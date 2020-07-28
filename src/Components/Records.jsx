@@ -1,15 +1,30 @@
 import React, { Component } from "react";
-import Like from "./Common/Like";
+import Like from "../Common/Like";
+import Pagination from "../Common/Pagination";
 import { getRecords } from "../services/fakeRecordService";
 
 class Records extends Component {
   state = {
     records: getRecords(),
+    pageSize: 4,
   };
 
   handleDelete = (record) => {
     const records = this.state.records.filter((r) => r._id !== record._id);
     this.setState({ records: records });
+  };
+
+  handleLike = (record) => {
+    const records = [...this.state.records];
+    const index = records.indexOf(record);
+    records[index] = { ...records[index] };
+    records[index].liked = !records[index].liked;
+    this.setState({ records });
+    // console.log("Like Clicked", record);
+  };
+
+  handlePageChange = (page) => {
+    console.log(page);
   };
 
   render() {
@@ -39,7 +54,10 @@ class Records extends Component {
                 <td>{record.numberInStock}</td>
                 <td>{record.dailyRentalRate}</td>
                 <td>
-                  <Like liked={record.liked} />
+                  <Like
+                    liked={record.liked}
+                    onClick={() => this.handleLike(record)}
+                  />
                 </td>
                 <td>
                   <button
@@ -53,6 +71,11 @@ class Records extends Component {
             ))}
           </tbody>
         </table>
+        <Pagination
+          itemsCount={count}
+          pageSize={this.state.pageSize}
+          onPageChenage={this.handlePageChange}
+        />
       </React.Fragment>
     );
   }
