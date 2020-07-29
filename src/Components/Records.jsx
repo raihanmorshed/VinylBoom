@@ -6,6 +6,7 @@ import { getRecords } from "../services/fakeRecordService";
 class Records extends Component {
   state = {
     records: getRecords(),
+    currentPage: 1,
     pageSize: 4,
   };
 
@@ -24,11 +25,12 @@ class Records extends Component {
   };
 
   handlePageChange = (page) => {
-    console.log(page);
+    this.setState({ currentPage: page });
   };
 
   render() {
     const { length: count } = this.state.records;
+    const { pageSize, currentPage } = this.state;
 
     if (count === 0) return <p>There are no records in the database. </p>;
 
@@ -73,7 +75,8 @@ class Records extends Component {
         </table>
         <Pagination
           itemsCount={count}
-          pageSize={this.state.pageSize}
+          pageSize={pageSize}
+          currentPage={currentPage}
           onPageChenage={this.handlePageChange}
         />
       </React.Fragment>
