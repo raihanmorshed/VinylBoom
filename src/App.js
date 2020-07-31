@@ -6,6 +6,7 @@ import OrderHistory from "./Components/OrderHistory";
 import RequestStock from "./Components/RequestStock";
 import NotFound from "./Components/NotFound";
 import NavBar from "./Components/NavBar";
+import LoginForm from "./Components/LoginForm";
 // import logo from "./logo.svg";
 import "./App.css";
 
@@ -17,6 +18,7 @@ class App extends Component {
         <NavBar />
         <main className="container">
           <Switch>
+            <Route path="/login" component={LoginForm}></Route>
             <Route path="/records" component={Records}></Route>
             <Route path="/profile" component={Profile}></Route>
             <Route path="/requeststock" component={RequestStock}></Route>
