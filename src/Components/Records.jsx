@@ -79,7 +79,7 @@ class Records extends Component {
                 <th>Title </th>
                 <th>Genre</th>
                 <th>Inventory</th>
-                <th>RIAA Certification</th>
+                <th>Album Rating(Out of 5)</th>
                 <th />
                 <th />
               </tr>

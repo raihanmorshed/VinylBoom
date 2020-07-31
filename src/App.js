@@ -7,6 +7,7 @@ import RequestStock from "./Components/RequestStock";
 import NotFound from "./Components/NotFound";
 import NavBar from "./Components/NavBar";
 import LoginForm from "./Components/LoginForm";
+import RegisterForm from "./Components/RegisterForm";
 // import logo from "./logo.svg";
 import "./App.css";
 
@@ -18,6 +19,7 @@ class App extends Component {
         <NavBar />
         <main className="container">
           <Switch>
+            <Route path="/register" component={RegisterForm}></Route>
             <Route path="/login" component={LoginForm}></Route>
             <Route path="/records" component={Records}></Route>
             <Route path="/profile" component={Profile}></Route>
